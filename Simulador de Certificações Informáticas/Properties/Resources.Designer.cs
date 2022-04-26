@@ -63,9 +63,59 @@ namespace Simulador_de_Certificações_Informáticas.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap microsoft_office_excel_logo_icon_145720 {
+            get {
+                object obj = ResourceManager.GetObject("microsoft_office_excel_logo_icon_145720", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Microsoft_Office_logo {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Office_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Microsoft_PowerPoint_Logo_wine {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_PowerPoint_Logo_wine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Microsoft_Word_Logo {
+            get {
+                object obj = ResourceManager.GetObject("Microsoft_Word_Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NotVisible {
             get {
                 object obj = ResourceManager.GetObject("NotVisible", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visible {
+            get {
+                object obj = ResourceManager.GetObject("Visible", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

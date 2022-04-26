@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Simulador_de_Certificações_Informáticas
@@ -13,9 +7,24 @@ namespace Simulador_de_Certificações_Informáticas
     public partial class LoginPage : Form
     {
         bool isVisible = false;
+
+        //Faz com que fique com rounded corners
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+            (
+                int nLeftRect,     // x-coordinate of upper-left corner
+                int nTopRect,      // y-coordinate of upper-left corner
+                int nRightRect,    // x-coordinate of lower-right corner
+                int nBottomRect,   // y-coordinate of lower-right corner
+                int nWidthEllipse, // width of ellipse
+                int nHeightEllipse // height of ellipse
+            );
+
         public LoginPage()
         {
             InitializeComponent();
+            //Faz com que fique com rounded corners
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -25,18 +34,67 @@ namespace Simulador_de_Certificações_Informáticas
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            if(isVisible == false)
-                isVisible = true;
-            else
-            isVisible = false;
-
             if (isVisible == false)
             {
-                pictureBox3.Image = Image.FromFile("media/NotVisible.png");
+                isVisible = true;
+                pictureBox3.Image = Properties.Resources.Visible;
+                TBpassword.PasswordChar = '\0';
             }
             else
-                pictureBox3.Image = Image.FromFile("media/Visible.png");
-            
+            {
+                isVisible = false;
+                pictureBox3.Image = Properties.Resources.NotVisible;
+                TBpassword.PasswordChar = '●';
+            }
+        }
+
+        private void TBuser_Click(object sender, EventArgs e)
+        {
+            if(label2.Visible == false)
+            {
+                TBuser.Text = String.Empty;
+                label2.Visible = true;
+            }
+            else { }
+        }
+
+        private void TBpassword_Click(object sender, EventArgs e)
+        {
+            if(label3.Visible == false)
+            {
+                TBpassword.Text = String.Empty;
+                label3.Visible = true;
+            }
+            else { }
+        }
+
+        private void BTNLogin_Click(object sender, EventArgs e)
+        {
+            SQL.connection.Open();
+
+            SQL.command.Connection = SQL.connection;
+            SQL.command.CommandText = "SELECT * FROM usercredentials WHERE username = '" + TBuser.Text + "' AND password = '" + TBpassword.Text + "'";
+
+            SQL.dataReader = SQL.command.ExecuteReader();
+
+            if (SQL.dataReader.Read())
+            { 
+                Hide();
+                Form homepage = new HomePage(TBuser.Text, SQL.dataReader.GetInt32(3));
+                SQL.connection.Close();
+                homepage.ShowDialog();
+            }
+            label6.Visible = true;
+            TBuser.Text = String.Empty;
+            TBpassword.Text = String.Empty;
+            TBuser.Focus();
+            SQL.connection.Close();
+        }
+
+        private void TBuser_TextChanged(object sender, EventArgs e)
+        {
+            if (TBuser.Text != String.Empty)
+                label6.Visible = false;
         }
     }
 }
