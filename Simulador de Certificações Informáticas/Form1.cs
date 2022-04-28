@@ -19,7 +19,6 @@ namespace Simulador_de_Certificações_Informáticas
                 int nWidthEllipse, // width of ellipse
                 int nHeightEllipse // height of ellipse
             );
-
         public LoginPage()
         {
             InitializeComponent();
@@ -73,7 +72,7 @@ namespace Simulador_de_Certificações_Informáticas
             SQL.connection.Open();
 
             SQL.command.Connection = SQL.connection;
-            SQL.command.CommandText = "SELECT * FROM usercredentials WHERE username = '" + TBuser.Text + "' AND password = '" + TBpassword.Text + "'";
+            SQL.command.CommandText = "SELECT * FROM usercredentials WHERE username = '" + TBuser.Text.Trim() + "' AND password = '" + TBpassword.Text.Trim() + "'";
 
             SQL.dataReader = SQL.command.ExecuteReader();
 
