@@ -35,6 +35,20 @@ namespace Simulador_de_Certificações_Informáticas
                 int nHeightEllipse // height of ellipse
             );
 
+       private void button_click(int buttonid)
+        {
+            if (BTNResposta1.BackColor == Color.FromArgb(106, 106, 106))
+            {
+                BTNResposta1.BackColor = Color.DodgerBlue;
+                btn1Selected = true;
+            }
+            else
+            {
+                BTNResposta1.BackColor = Color.FromArgb(106, 106, 106);
+                btn1Selected = false;
+            }
+        }
+
         private void load_exame(int exame_escolhido, int pergunta_atual)
         {
             string table = "";
@@ -105,13 +119,13 @@ namespace Simulador_de_Certificações_Informáticas
             if (BTNResposta1.BackColor == Color.FromArgb(106, 106, 106))
             {
                 BTNResposta1.BackColor = Color.DodgerBlue;
-                btn1Selected = true;
+                btn2Selected = true;
             }
             else
             {
                 BTNResposta1.BackColor = Color.FromArgb(106, 106, 106);
                 btn1Selected = false;
-            }   
+            }
         }
 
         private void BTNResposta2_Click(object sender, EventArgs e)
