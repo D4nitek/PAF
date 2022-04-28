@@ -37,33 +37,33 @@ namespace Simulador_de_Certificações_Informáticas
             if (isVisible == false)
             {
                 isVisible = true;
-                pictureBox3.Image = Properties.Resources.Visible;
+                btnVisible.Image = Properties.Resources.Visible;
                 TBpassword.PasswordChar = '\0';
             }
             else
             {
                 isVisible = false;
-                pictureBox3.Image = Properties.Resources.NotVisible;
+                btnVisible.Image = Properties.Resources.NotVisible;
                 TBpassword.PasswordChar = '●';
             }
         }
 
         private void TBuser_Click(object sender, EventArgs e)
         {
-            if(label2.Visible == false)
+            if(labelUsername.Visible == false)
             {
                 TBuser.Text = String.Empty;
-                label2.Visible = true;
+                labelUsername.Visible = true;
             }
             else { }
         }
 
         private void TBpassword_Click(object sender, EventArgs e)
         {
-            if(label3.Visible == false)
+            if(labelPassword.Visible == false)
             {
                 TBpassword.Text = String.Empty;
-                label3.Visible = true;
+                labelPassword.Visible = true;
             }
             else { }
         }
@@ -84,7 +84,7 @@ namespace Simulador_de_Certificações_Informáticas
                 SQL.connection.Close();
                 homepage.ShowDialog();
             }
-            label6.Visible = true;
+            labelErro.Visible = true;
             TBuser.Text = String.Empty;
             TBpassword.Text = String.Empty;
             TBuser.Focus();
@@ -94,7 +94,10 @@ namespace Simulador_de_Certificações_Informáticas
         private void TBuser_TextChanged(object sender, EventArgs e)
         {
             if (TBuser.Text != String.Empty)
-                label6.Visible = false;
+            {
+                labelErro.Visible = false;
+                labelUsername.Visible = true;
+            }
         }
     }
 }
