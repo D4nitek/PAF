@@ -34,6 +34,10 @@
             this.labelData = new System.Windows.Forms.Label();
             this.TabController = new System.Windows.Forms.TabControl();
             this.simuladorTAB = new System.Windows.Forms.TabPage();
+            this.BTNResposta4 = new System.Windows.Forms.Button();
+            this.BTNResposta3 = new System.Windows.Forms.Button();
+            this.BTNResposta2 = new System.Windows.Forms.Button();
+            this.BTNResposta1 = new System.Windows.Forms.Button();
             this.BTNFinish = new System.Windows.Forms.Button();
             this.BTNNext = new System.Windows.Forms.Button();
             this.BTNPrevious = new System.Windows.Forms.Button();
@@ -58,10 +62,6 @@
             this.lockedPanel = new System.Windows.Forms.Panel();
             this.lockedIcon = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.BTNResposta1 = new System.Windows.Forms.Button();
-            this.BTNResposta2 = new System.Windows.Forms.Button();
-            this.BTNResposta3 = new System.Windows.Forms.Button();
-            this.BTNResposta4 = new System.Windows.Forms.Button();
             this.TabController.SuspendLayout();
             this.simuladorTAB.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -150,6 +150,54 @@
             this.simuladorTAB.TabIndex = 0;
             this.simuladorTAB.Text = "Simulador";
             // 
+            // BTNResposta4
+            // 
+            this.BTNResposta4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            this.BTNResposta4.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BTNResposta4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTNResposta4.Location = new System.Drawing.Point(1023, 348);
+            this.BTNResposta4.Name = "BTNResposta4";
+            this.BTNResposta4.Size = new System.Drawing.Size(35, 34);
+            this.BTNResposta4.TabIndex = 28;
+            this.BTNResposta4.UseVisualStyleBackColor = false;
+            this.BTNResposta4.Click += new System.EventHandler(this.BTNResposta4_Click);
+            // 
+            // BTNResposta3
+            // 
+            this.BTNResposta3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            this.BTNResposta3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BTNResposta3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTNResposta3.Location = new System.Drawing.Point(1023, 287);
+            this.BTNResposta3.Name = "BTNResposta3";
+            this.BTNResposta3.Size = new System.Drawing.Size(35, 34);
+            this.BTNResposta3.TabIndex = 27;
+            this.BTNResposta3.UseVisualStyleBackColor = false;
+            this.BTNResposta3.Click += new System.EventHandler(this.BTNResposta3_Click);
+            // 
+            // BTNResposta2
+            // 
+            this.BTNResposta2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            this.BTNResposta2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BTNResposta2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTNResposta2.Location = new System.Drawing.Point(1023, 223);
+            this.BTNResposta2.Name = "BTNResposta2";
+            this.BTNResposta2.Size = new System.Drawing.Size(35, 34);
+            this.BTNResposta2.TabIndex = 26;
+            this.BTNResposta2.UseVisualStyleBackColor = false;
+            this.BTNResposta2.Click += new System.EventHandler(this.BTNResposta2_Click);
+            // 
+            // BTNResposta1
+            // 
+            this.BTNResposta1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
+            this.BTNResposta1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.BTNResposta1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTNResposta1.Location = new System.Drawing.Point(1023, 159);
+            this.BTNResposta1.Name = "BTNResposta1";
+            this.BTNResposta1.Size = new System.Drawing.Size(35, 34);
+            this.BTNResposta1.TabIndex = 25;
+            this.BTNResposta1.UseVisualStyleBackColor = false;
+            this.BTNResposta1.Click += new System.EventHandler(this.BTNResposta1_Click);
+            // 
             // BTNFinish
             // 
             this.BTNFinish.BackColor = System.Drawing.Color.DodgerBlue;
@@ -162,6 +210,7 @@
             this.BTNFinish.Text = "Entregar";
             this.BTNFinish.UseVisualStyleBackColor = false;
             this.BTNFinish.Visible = false;
+            this.BTNFinish.Click += new System.EventHandler(this.BTNFinish_Click);
             // 
             // BTNNext
             // 
@@ -429,54 +478,6 @@
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // BTNResposta1
-            // 
-            this.BTNResposta1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
-            this.BTNResposta1.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BTNResposta1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BTNResposta1.Location = new System.Drawing.Point(1023, 159);
-            this.BTNResposta1.Name = "BTNResposta1";
-            this.BTNResposta1.Size = new System.Drawing.Size(35, 34);
-            this.BTNResposta1.TabIndex = 25;
-            this.BTNResposta1.UseVisualStyleBackColor = false;
-            this.BTNResposta1.Click += new System.EventHandler(this.BTNResposta1_Click);
-            // 
-            // BTNResposta2
-            // 
-            this.BTNResposta2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
-            this.BTNResposta2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BTNResposta2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BTNResposta2.Location = new System.Drawing.Point(1023, 223);
-            this.BTNResposta2.Name = "BTNResposta2";
-            this.BTNResposta2.Size = new System.Drawing.Size(35, 34);
-            this.BTNResposta2.TabIndex = 26;
-            this.BTNResposta2.UseVisualStyleBackColor = false;
-            this.BTNResposta2.Click += new System.EventHandler(this.BTNResposta2_Click);
-            // 
-            // BTNResposta3
-            // 
-            this.BTNResposta3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
-            this.BTNResposta3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BTNResposta3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BTNResposta3.Location = new System.Drawing.Point(1023, 287);
-            this.BTNResposta3.Name = "BTNResposta3";
-            this.BTNResposta3.Size = new System.Drawing.Size(35, 34);
-            this.BTNResposta3.TabIndex = 27;
-            this.BTNResposta3.UseVisualStyleBackColor = false;
-            this.BTNResposta3.Click += new System.EventHandler(this.BTNResposta3_Click);
-            // 
-            // BTNResposta4
-            // 
-            this.BTNResposta4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(106)))), ((int)(((byte)(106)))));
-            this.BTNResposta4.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.BTNResposta4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BTNResposta4.Location = new System.Drawing.Point(1023, 348);
-            this.BTNResposta4.Name = "BTNResposta4";
-            this.BTNResposta4.Size = new System.Drawing.Size(35, 34);
-            this.BTNResposta4.TabIndex = 28;
-            this.BTNResposta4.UseVisualStyleBackColor = false;
-            this.BTNResposta4.Click += new System.EventHandler(this.BTNResposta4_Click);
             // 
             // HomePage
             // 

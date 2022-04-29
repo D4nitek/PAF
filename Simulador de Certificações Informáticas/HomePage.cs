@@ -34,21 +34,7 @@ namespace Simulador_de_Certificações_Informáticas
                 int nWidthEllipse, // width of ellipse
                 int nHeightEllipse // height of ellipse
             );
-/*
-       private void button_click(int buttonid)
-        {
-            if (BTNResposta1.BackColor == Color.FromArgb(106, 106, 106))
-            {
-                BTNResposta1.BackColor = Color.DodgerBlue;
-                btn1Selected = true;
-            }
-            else
-            {
-                BTNResposta1.BackColor = Color.FromArgb(106, 106, 106);
-                btn1Selected = false;
-            }
-        }
-*/
+
         private void load_exame(int exame_escolhido, int pergunta_atual)
         {
             string table = "";
@@ -227,7 +213,13 @@ namespace Simulador_de_Certificações_Informáticas
             else
             {
                 MessageBox.Show("Chegou á ultima pergunta!");
+                BTNFinish.Visible = true;
             }
+        }
+
+        private void BTNFinish_Click(object sender, EventArgs e)
+        {
+
         }
         //Fim do código da tab Simulador
         //Tab Resultados
