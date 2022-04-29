@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Simulador_de_Certificações_Informáticas
 {
@@ -74,6 +75,22 @@ namespace Simulador_de_Certificações_Informáticas
 
         }
 
+        public void get_data()
+        {
+            SQL.connection.Close();
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            DataTable dataTable = new DataTable();
+            SQL.command.Connection = SQL.connection;
+            SQL.connection.Open();
+            SQL.command.CommandText = "SELECT * FROM usercredentials";
+
+            dataAdapter.SelectCommand = SQL.command;
+            dataAdapter.Fill(dataTable);
+            dataGridViewUsers.DataSource = dataTable;
+
+            SQL.connection.Close();
+        }
+
         public HomePage(string username, int level)
         {
             InitializeComponent();
@@ -91,6 +108,9 @@ namespace Simulador_de_Certificações_Informáticas
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             labelWelcome.Text = "Bem vindo " + username + " | Nível de Acesso: " + ((level > 0) ? "Administrador" : "Utilizador");
             labelData.Text = DateTime.UtcNow.Date.ToString("dd/MM/yyyy");
+
+            get_data();
+
         }
         private void pictureBox2_Click(object sender, EventArgs e)
         {
@@ -221,7 +241,93 @@ namespace Simulador_de_Certificações_Informáticas
         {
 
         }
+
         //Fim do código da tab Simulador
         //Tab Resultados
+
+        //Fim do código da tab Resultados
+        //Tab Gestão de Users
+
+        private void tbID_TextChanged(object sender, EventArgs e)
+        {
+            bool isNumber = int.TryParse(tbID.Text, out int n);
+            if (isNumber == false && tbID.Text != String.Empty)
+            {
+                tbID.Text = String.Empty;
+                MessageBox.Show("O ID tem de ser número inteiro!");
+            }
+        }
+
+        private void tbID_Click(object sender, EventArgs e)
+        {
+            if (tbID.Text == "ID")
+                tbID.Text = String.Empty;
+        }
+
+        private void tbUser_Click(object sender, EventArgs e)
+        {
+            if (tbUser.Text == "Username")
+                tbUser.Text = String.Empty;
+        }
+
+        private void tbPassword_Click(object sender, EventArgs e)
+        {
+            if (tbPassword.Text == "Password")
+                tbPassword.Text = String.Empty;
+        }
+
+        private void btnInserirUser_Click(object sender, EventArgs e)
+        {
+            if (tbID.Text != String.Empty && tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != 0 && cbLevel.SelectedIndex != -1)
+            {
+                SQL.command = new MySqlCommand();
+                SQL.command.Connection = SQL.connection;
+                SQL.connection.Open();
+                SQL.command.CommandText = "INSERT INTO usercredentials (username, password, level) VALUES ('" + tbUser.Text + "','" + tbPassword.Text + "','" + (cbLevel.SelectedIndex) + "');";
+                SQL.dataReader = SQL.command.ExecuteReader();
+                SQL.connection.Close();
+
+                MessageBox.Show("Utilizador inserido com sucesso!");
+                get_data();
+            }
+            else
+                MessageBox.Show("Todos os campos devem estar preenchidos corretamente!");
+        }
+
+        private void btnUpdateUser_Click(object sender, EventArgs e)
+        {
+            if (tbID.Text != String.Empty && tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != 0 && cbLevel.SelectedIndex != -1)
+            {
+                SQL.command = new MySqlCommand();
+                SQL.command.Connection = SQL.connection;
+                SQL.connection.Open();
+                SQL.command.CommandText = "UPDATE usercredentials set (username, password, level) VALUES ('" + tbUser.Text + "','" + tbPassword.Text + "','" + (cbLevel.SelectedIndex) + "') where id = '" + tbID.Text + "';";
+                SQL.dataReader = SQL.command.ExecuteReader();
+                SQL.connection.Close();
+
+                MessageBox.Show("Utilizador atualizado com sucesso!");
+                get_data();
+            }
+            else
+                MessageBox.Show("Todos os campos devem estar preenchidos corretamente!");
+        }
+
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            if (tbID.Text == String.Empty || tbID.Text != "ID")
+            {
+                SQL.command = new MySqlCommand();
+                SQL.command.Connection = SQL.connection;
+                SQL.connection.Open();
+                SQL.command.CommandText = "DELETE FROM usercredentials WHERE id = '" + tbID.Text + "';";
+                SQL.dataReader = SQL.command.ExecuteReader();
+                SQL.connection.Close();
+
+                MessageBox.Show("Utilizador eliminado com sucesso!");
+                get_data();
+            }
+            else
+                MessageBox.Show("Por favor, insira o ID do user que deseja eliminar!");
+        }
     }
 }

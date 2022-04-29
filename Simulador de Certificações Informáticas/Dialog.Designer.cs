@@ -59,14 +59,24 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.resultsTAB = new System.Windows.Forms.TabPage();
             this.adminTAB = new System.Windows.Forms.TabPage();
+            this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.lockedPanel = new System.Windows.Forms.Panel();
             this.lockedIcon = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnDeleteUser = new System.Windows.Forms.Button();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.tbUser = new System.Windows.Forms.TextBox();
+            this.cbLevel = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbID = new System.Windows.Forms.TextBox();
+            this.btnUpdateUser = new System.Windows.Forms.Button();
+            this.btnInserirUser = new System.Windows.Forms.Button();
             this.TabController.SuspendLayout();
             this.simuladorTAB.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.adminTAB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             this.lockedPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lockedIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -441,7 +451,15 @@
             // adminTAB
             // 
             this.adminTAB.BackColor = System.Drawing.Color.DimGray;
-            this.adminTAB.Controls.Add(this.lockedPanel);
+            this.adminTAB.Controls.Add(this.btnInserirUser);
+            this.adminTAB.Controls.Add(this.btnUpdateUser);
+            this.adminTAB.Controls.Add(this.tbID);
+            this.adminTAB.Controls.Add(this.label2);
+            this.adminTAB.Controls.Add(this.cbLevel);
+            this.adminTAB.Controls.Add(this.tbUser);
+            this.adminTAB.Controls.Add(this.tbPassword);
+            this.adminTAB.Controls.Add(this.btnDeleteUser);
+            this.adminTAB.Controls.Add(this.dataGridViewUsers);
             this.adminTAB.Location = new System.Drawing.Point(4, 26);
             this.adminTAB.Name = "adminTAB";
             this.adminTAB.Padding = new System.Windows.Forms.Padding(3);
@@ -449,11 +467,29 @@
             this.adminTAB.TabIndex = 2;
             this.adminTAB.Text = "Gestão Users";
             // 
+            // dataGridViewUsers
+            // 
+            this.dataGridViewUsers.AllowUserToAddRows = false;
+            this.dataGridViewUsers.AllowUserToDeleteRows = false;
+            this.dataGridViewUsers.AllowUserToResizeColumns = false;
+            this.dataGridViewUsers.AllowUserToResizeRows = false;
+            this.dataGridViewUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewUsers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.dataGridViewUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsers.GridColor = System.Drawing.Color.DodgerBlue;
+            this.dataGridViewUsers.Location = new System.Drawing.Point(30, 183);
+            this.dataGridViewUsers.MultiSelect = false;
+            this.dataGridViewUsers.Name = "dataGridViewUsers";
+            this.dataGridViewUsers.ReadOnly = true;
+            this.dataGridViewUsers.Size = new System.Drawing.Size(894, 234);
+            this.dataGridViewUsers.TabIndex = 0;
+            // 
             // lockedPanel
             // 
             this.lockedPanel.BackColor = System.Drawing.Color.DimGray;
             this.lockedPanel.Controls.Add(this.lockedIcon);
-            this.lockedPanel.Location = new System.Drawing.Point(0, 0);
+            this.lockedPanel.Location = new System.Drawing.Point(28, 581);
             this.lockedPanel.Name = "lockedPanel";
             this.lockedPanel.Size = new System.Drawing.Size(1092, 446);
             this.lockedPanel.TabIndex = 0;
@@ -479,12 +515,118 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
+            // btnDeleteUser
+            // 
+            this.btnDeleteUser.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnDeleteUser.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteUser.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteUser.Location = new System.Drawing.Point(935, 373);
+            this.btnDeleteUser.Name = "btnDeleteUser";
+            this.btnDeleteUser.Size = new System.Drawing.Size(148, 45);
+            this.btnDeleteUser.TabIndex = 24;
+            this.btnDeleteUser.Text = "Eliminar User";
+            this.btnDeleteUser.UseVisualStyleBackColor = false;
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbPassword.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPassword.ForeColor = System.Drawing.Color.White;
+            this.tbPassword.Location = new System.Drawing.Point(626, 119);
+            this.tbPassword.Multiline = true;
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(298, 40);
+            this.tbPassword.TabIndex = 25;
+            this.tbPassword.Text = "Password";
+            this.tbPassword.Click += new System.EventHandler(this.tbPassword_Click);
+            // 
+            // tbUser
+            // 
+            this.tbUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUser.ForeColor = System.Drawing.Color.White;
+            this.tbUser.Location = new System.Drawing.Point(30, 119);
+            this.tbUser.Multiline = true;
+            this.tbUser.Name = "tbUser";
+            this.tbUser.Size = new System.Drawing.Size(298, 40);
+            this.tbUser.TabIndex = 26;
+            this.tbUser.Text = "Username";
+            this.tbUser.Click += new System.EventHandler(this.tbUser_Click);
+            // 
+            // cbLevel
+            // 
+            this.cbLevel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cbLevel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbLevel.ForeColor = System.Drawing.Color.White;
+            this.cbLevel.FormattingEnabled = true;
+            this.cbLevel.Items.AddRange(new object[] {
+            "Utilizador",
+            "Admin"});
+            this.cbLevel.Location = new System.Drawing.Point(719, 29);
+            this.cbLevel.Name = "cbLevel";
+            this.cbLevel.Size = new System.Drawing.Size(205, 29);
+            this.cbLevel.TabIndex = 27;
+            this.cbLevel.Text = "(Selecione...)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(557, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(154, 25);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Nível de Acesso:";
+            // 
+            // tbID
+            // 
+            this.tbID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tbID.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbID.ForeColor = System.Drawing.Color.White;
+            this.tbID.Location = new System.Drawing.Point(30, 29);
+            this.tbID.Multiline = true;
+            this.tbID.Name = "tbID";
+            this.tbID.Size = new System.Drawing.Size(298, 40);
+            this.tbID.TabIndex = 29;
+            this.tbID.Text = "ID";
+            this.tbID.Click += new System.EventHandler(this.tbID_Click);
+            this.tbID.TextChanged += new System.EventHandler(this.tbID_TextChanged);
+            // 
+            // btnUpdateUser
+            // 
+            this.btnUpdateUser.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnUpdateUser.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateUser.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateUser.Location = new System.Drawing.Point(935, 278);
+            this.btnUpdateUser.Name = "btnUpdateUser";
+            this.btnUpdateUser.Size = new System.Drawing.Size(148, 45);
+            this.btnUpdateUser.TabIndex = 30;
+            this.btnUpdateUser.Text = "Atualizar User";
+            this.btnUpdateUser.UseVisualStyleBackColor = false;
+            this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
+            // 
+            // btnInserirUser
+            // 
+            this.btnInserirUser.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnInserirUser.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInserirUser.ForeColor = System.Drawing.Color.White;
+            this.btnInserirUser.Location = new System.Drawing.Point(935, 183);
+            this.btnInserirUser.Name = "btnInserirUser";
+            this.btnInserirUser.Size = new System.Drawing.Size(148, 45);
+            this.btnInserirUser.TabIndex = 31;
+            this.btnInserirUser.Text = "Inserir User";
+            this.btnInserirUser.UseVisualStyleBackColor = false;
+            this.btnInserirUser.Click += new System.EventHandler(this.btnInserirUser_Click);
+            // 
             // HomePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.ClientSize = new System.Drawing.Size(1150, 600);
+            this.Controls.Add(this.lockedPanel);
             this.Controls.Add(this.TabController);
             this.Controls.Add(this.labelData);
             this.Controls.Add(this.labelWelcome);
@@ -501,6 +643,8 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.adminTAB.ResumeLayout(false);
+            this.adminTAB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             this.lockedPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lockedIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -544,5 +688,14 @@
         private System.Windows.Forms.Button BTNResposta4;
         private System.Windows.Forms.Button BTNResposta3;
         private System.Windows.Forms.Button BTNResposta2;
+        private System.Windows.Forms.DataGridView dataGridViewUsers;
+        private System.Windows.Forms.Button btnDeleteUser;
+        private System.Windows.Forms.TextBox tbUser;
+        private System.Windows.Forms.TextBox tbPassword;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbLevel;
+        private System.Windows.Forms.TextBox tbID;
+        private System.Windows.Forms.Button btnInserirUser;
+        private System.Windows.Forms.Button btnUpdateUser;
     }
 }
