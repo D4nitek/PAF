@@ -79,7 +79,7 @@ namespace Simulador_de_Certificações_Informáticas
             if (SQL.dataReader.Read())
             { 
                 Hide();
-                Form homepage = new HomePage(TBuser.Text, SQL.dataReader.GetInt32(3));
+                Form homepage = new HomePage(TBuser.Text, SQL.dataReader.GetInt32(0), SQL.dataReader.GetInt32(3));
                 SQL.connection.Close();
                 homepage.ShowDialog();
             }

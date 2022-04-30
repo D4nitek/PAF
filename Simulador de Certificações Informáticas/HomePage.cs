@@ -17,12 +17,15 @@ namespace Simulador_de_Certificações_Informáticas
 
         //Tab Simulador
 
-        bool btn1Selected = false;
-        bool btn2Selected = false;
-        bool btn3Selected = false;
-        bool btn4Selected = false;
+        //Variaveis Globais
         int contador = 1;
         int tabela_atual = 0;
+        string[] respostasDadas = new string[10];
+        int corretas, incorretas;
+        string resultado = "";
+        int iduser;
+        string currentuser = "";
+        string table = "";
 
         //Faz com que fique com rounded corners
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -36,10 +39,65 @@ namespace Simulador_de_Certificações_Informáticas
                 int nHeightEllipse // height of ellipse
             );
 
+        void ClearAllButtons(Control con) //LIMPAR TODOS OS BOTÕES
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is Button)
+                {
+                    c.BackColor = Color.FromArgb(106, 106, 106);
+                }
+                else
+                {
+                    ClearAllButtons(c);
+                }
+            }
+        }
+
+        private void responder()
+        {
+            if (respostasDadas[contador - 1] == "a")
+            {
+                BTNResposta1.BackColor = Color.DodgerBlue;
+            }
+            else if (respostasDadas[contador - 1] == "b")
+            {
+                BTNResposta2.BackColor = Color.DodgerBlue;
+            }
+            else if (respostasDadas[contador - 1] == "c")
+            {
+                BTNResposta3.BackColor = Color.DodgerBlue;
+            }
+            else if (respostasDadas[contador - 1] == "d")
+            {
+                BTNResposta4.BackColor = Color.DodgerBlue;
+            }
+        }
+
+        private void resetar_exame() //Metodo para resetar tudo após finalizar o exame
+        {
+            BTNIniciar.Enabled = true;
+            comboBox1.Enabled = true;
+            incorretas = 0;
+            corretas = 0;
+            contador = 1;
+            comboBox1.SelectedIndex = -1;
+            ClearAllButtons(panel2);
+            BTNFinish.Visible = false;
+            TBResposta1.Text = String.Empty;
+            TBResposta2.Text = String.Empty;
+            TBResposta3.Text = String.Empty;
+            TBResposta4.Text = String.Empty;
+            BTNPrevious.Visible = false;
+            BTNNext.Visible = false;
+            for (int i = 0; i < 10; i++)
+            {
+                respostasDadas[i] = "";
+            }
+        }
+
         private void load_exame(int exame_escolhido, int pergunta_atual)
         {
-            string table = "";
-
             if (exame_escolhido == 1)
             {
                 tabela_atual = exame_escolhido;
@@ -91,9 +149,28 @@ namespace Simulador_de_Certificações_Informáticas
             SQL.connection.Close();
         }
 
-        public HomePage(string username, int level)
+        private void getDataExames()
         {
+            SQL.connection.Close();
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            DataTable dataTable = new DataTable();
+            SQL.command.Connection = SQL.connection;
+            SQL.connection.Open();
+            SQL.command.CommandText = "SELECT Exame, Corretas, Incorretas, Resultado FROM resultados WHERE id ='" + iduser + "'";
+
+            dataAdapter.SelectCommand = SQL.command;
+            dataAdapter.Fill(dataTable);
+            examesGrid.DataSource = dataTable;
+
+            SQL.connection.Close();
+        }
+
+        public HomePage(string username, int id, int level)
+        {
+            iduser = id;
+            currentuser = username;
             InitializeComponent();
+            getDataExames();
             if(level > 0)
             {
                 lockedPanel.Visible = false;
@@ -122,58 +199,58 @@ namespace Simulador_de_Certificações_Informáticas
 
         private void BTNResposta1_Click(object sender, EventArgs e)
         {
+            ClearAllButtons(panel2);
             if (BTNResposta1.BackColor == Color.FromArgb(106, 106, 106))
             {
-                BTNResposta1.BackColor = Color.DodgerBlue;
-                btn2Selected = true;
+                BTNResposta1.BackColor = Color.DodgerBlue; 
             }
             else
             {
                 BTNResposta1.BackColor = Color.FromArgb(106, 106, 106);
-                btn1Selected = false;
             }
+            respostasDadas[contador - 1] = "a";
         }
 
         private void BTNResposta2_Click(object sender, EventArgs e)
         {
+            ClearAllButtons(panel2);
             if (BTNResposta2.BackColor == Color.FromArgb(106, 106, 106))
             {
                 BTNResposta2.BackColor = Color.DodgerBlue;
-                btn2Selected = true;
             }
             else
             {
                 BTNResposta2.BackColor = Color.FromArgb(106, 106, 106);
-                btn2Selected = false;
             }
+            respostasDadas[contador - 1] = "b";
         }
 
         private void BTNResposta3_Click(object sender, EventArgs e)
         {
+            ClearAllButtons(panel2);
             if (BTNResposta3.BackColor == Color.FromArgb(106, 106, 106))
             {
                 BTNResposta3.BackColor = Color.DodgerBlue;
-                btn3Selected = true;
             }
             else
             {
                 BTNResposta3.BackColor = Color.FromArgb(106, 106, 106);
-                btn3Selected = false;
             }
+            respostasDadas[contador - 1] = "c";
         }
 
         private void BTNResposta4_Click(object sender, EventArgs e)
         {
+            ClearAllButtons(panel2);
             if (BTNResposta4.BackColor == Color.FromArgb(106, 106, 106))
             {
                 BTNResposta4.BackColor = Color.DodgerBlue;
-                btn4Selected = true;
             }
             else
             {
                 BTNResposta4.BackColor = Color.FromArgb(106, 106, 106);
-                btn4Selected = false;
             }
+            respostasDadas[contador - 1] = "d";
         }
 
         private void BTNIniciar_Click(object sender, EventArgs e)
@@ -187,6 +264,7 @@ namespace Simulador_de_Certificações_Informáticas
                     break;
                 case 1:
                     comboBox1.Enabled = false;
+                    BTNIniciar.Enabled = false;
                     pictureBox1.Image = Properties.Resources.Microsoft_Word_Logo;
                     load_exame(1,1);
                     BTNNext.Visible = true;
@@ -194,6 +272,7 @@ namespace Simulador_de_Certificações_Informáticas
                     break;
                 case 2:
                     comboBox1.Enabled = false;
+                    BTNIniciar.Enabled = false;
                     pictureBox1.Image = Properties.Resources.microsoft_office_excel_logo_icon_145720;
                     load_exame(2,1);
                     BTNNext.Visible = true;
@@ -201,6 +280,7 @@ namespace Simulador_de_Certificações_Informáticas
                     break;
                 case 3:
                     comboBox1.Enabled = false;
+                    BTNIniciar.Enabled = false;
                     pictureBox1.Image = Properties.Resources.Microsoft_PowerPoint_Logo_wine;
                     load_exame(3,1);
                     BTNNext.Visible = true;
@@ -212,6 +292,7 @@ namespace Simulador_de_Certificações_Informáticas
             }
         }
 
+        //Botões para trocar de pergunta
         private void BTNPrevious_Click(object sender, EventArgs e)
         {
             if (contador > 1)
@@ -222,6 +303,8 @@ namespace Simulador_de_Certificações_Informáticas
             {
                 MessageBox.Show("Chegou á ultima pergunta!");
             }
+            ClearAllButtons(panel2);
+            responder();
         }
 
         private void BTNNext_Click(object sender, EventArgs e)
@@ -235,17 +318,76 @@ namespace Simulador_de_Certificações_Informáticas
                 MessageBox.Show("Chegou á ultima pergunta!");
                 BTNFinish.Visible = true;
             }
+            ClearAllButtons(panel2);
+            responder();
         }
 
-        private void BTNFinish_Click(object sender, EventArgs e)
+        private void BTNFinish_Click(object sender, EventArgs e) //Botão para finalizar exame
         {
+            for (int i = 0; i < 10; i++)
+            {
+                SQL.connection.Open();
 
+                SQL.command.Connection = SQL.connection;
+                SQL.command.CommandText = "SELECT * FROM " + table + " WHERE idpergunta = '" + (i + 1) + "'";
+
+                SQL.dataReader = SQL.command.ExecuteReader();
+
+                if (SQL.dataReader.Read())
+                {
+                    if (respostasDadas[i] == SQL.dataReader.GetString(6))
+                    {
+                        corretas += 1;
+                    }
+                    else
+                    {
+                        incorretas += 1;
+                    }
+                }
+
+                SQL.connection.Close();
+            }//final do for loop
+
+            grafCorretas.Size = new Size((30 * corretas), 25);
+            grafIncorretas.Size = new Size((30 * incorretas), 25);
+            labelCorretas.Text = "Corretas - " + corretas.ToString();
+            labelIncorretas.Text = "Incorretas - " + incorretas.ToString();
+            labelPercentagem.Text = "Percentagem: " + (corretas * 10).ToString() + "%";
+            if (corretas >= 7)
+            {
+                resultado = "Aprovado";
+                labelStatus.Text = "Aprovado";
+                labelPercentagem.ForeColor = Color.DodgerBlue;
+                labelStatus.ForeColor = Color.DodgerBlue;
+            }
+            else
+            {
+                resultado = "Reprovado";
+                labelStatus.Text = "Reprovado";
+                labelPercentagem.ForeColor = Color.FromArgb(255, 72, 72);
+                labelStatus.ForeColor = Color.FromArgb(255, 72, 72);
+            }
+
+            //----------------------------------------------------------------------------------------------------------
+
+            SQL.connection.Open();
+
+            SQL.command.Connection = SQL.connection;
+            SQL.command.CommandText = "INSERT INTO resultados (id, user, exame, corretas, incorretas, resultado) VALUES ('" + iduser + "','" + currentuser + "','" + tabela_atual + "','" + corretas + "','" + incorretas + "','" + resultado + "');";
+
+            SQL.dataReader = SQL.command.ExecuteReader();
+
+            SQL.connection.Close();
+
+            getDataExames();
+            get_data();
+            resetar_exame();
+
+            MessageBox.Show("Exame entregue com sucesso!");
         }
 
         //Fim do código da tab Simulador
-        //Tab Resultados
 
-        //Fim do código da tab Resultados
         //Tab Gestão de Users
 
         private void tbID_TextChanged(object sender, EventArgs e)
@@ -261,24 +403,36 @@ namespace Simulador_de_Certificações_Informáticas
         private void tbID_Click(object sender, EventArgs e)
         {
             if (tbID.Text == "ID")
+            {
                 tbID.Text = String.Empty;
+                labelID.Visible = true;
+            }
+                
         }
 
         private void tbUser_Click(object sender, EventArgs e)
         {
             if (tbUser.Text == "Username")
+            {
                 tbUser.Text = String.Empty;
+                labelUsername.Visible = true;
+            }
+                
         }
 
         private void tbPassword_Click(object sender, EventArgs e)
         {
             if (tbPassword.Text == "Password")
+            {
                 tbPassword.Text = String.Empty;
+                labelPassword.Visible = true;
+            }
+                
         }
 
         private void btnInserirUser_Click(object sender, EventArgs e)
         {
-            if (tbID.Text != String.Empty && tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != 0 && cbLevel.SelectedIndex != -1)
+            if (tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != -1)
             {
                 SQL.command = new MySqlCommand();
                 SQL.command.Connection = SQL.connection;
@@ -296,12 +450,15 @@ namespace Simulador_de_Certificações_Informáticas
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            if (tbID.Text != String.Empty && tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != 0 && cbLevel.SelectedIndex != -1)
+            if (tbID.Text != String.Empty && tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != -1)
             {
                 SQL.command = new MySqlCommand();
                 SQL.command.Connection = SQL.connection;
                 SQL.connection.Open();
-                SQL.command.CommandText = "UPDATE usercredentials set (username, password, level) VALUES ('" + tbUser.Text + "','" + tbPassword.Text + "','" + (cbLevel.SelectedIndex) + "') where id = '" + tbID.Text + "';";
+                SQL.command.CommandText = "UPDATE usercredentials set username = @username, password = @password, level = @level where id = '" + tbID.Text + "';";
+                SQL.command.Parameters.AddWithValue("@username", tbUser.Text);
+                SQL.command.Parameters.AddWithValue("@password", tbPassword.Text);
+                SQL.command.Parameters.AddWithValue("@level", cbLevel.SelectedIndex);
                 SQL.dataReader = SQL.command.ExecuteReader();
                 SQL.connection.Close();
 
