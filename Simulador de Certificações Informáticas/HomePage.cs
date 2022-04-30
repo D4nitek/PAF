@@ -54,7 +54,7 @@ namespace Simulador_de_Certificações_Informáticas
             }
         }
 
-        private void responder()
+        private void responder() 
         {
             if (respostasDadas[contador - 1] == "a")
             {
@@ -74,7 +74,7 @@ namespace Simulador_de_Certificações_Informáticas
             }
         }
 
-        private void resetar_exame() //Metodo para resetar tudo após finalizar o exame
+        private void resetar_exame()//Função para resetar tudo após finalizar o exame
         {
             BTNIniciar.Enabled = true;
             comboBox1.Enabled = true;
@@ -96,7 +96,7 @@ namespace Simulador_de_Certificações_Informáticas
             }
         }
 
-        private void load_exame(int exame_escolhido, int pergunta_atual)
+        private void load_exame(int exame_escolhido, int pergunta_atual)//Dá load ao exame escolhido
         {
             if (exame_escolhido == 1)
             {
@@ -131,9 +131,9 @@ namespace Simulador_de_Certificações_Informáticas
 
             SQL.connection.Close();
 
-        }
+        }  
 
-        public void get_data()
+        public void get_data()//Função para dar load a data da tabela usercredentials
         {
             SQL.connection.Close();
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
@@ -149,7 +149,7 @@ namespace Simulador_de_Certificações_Informáticas
             SQL.connection.Close();
         }
 
-        private void getDataExames()
+        private void getDataExames()//Função para dar load a data da tabela resultados
         {
             SQL.connection.Close();
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
@@ -189,7 +189,7 @@ namespace Simulador_de_Certificações_Informáticas
             get_data();
 
         }
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)//Botão de saída
         {
             DialogResult d;
             d = MessageBox.Show("Tem a ceteza que deseja sair?","Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -197,6 +197,7 @@ namespace Simulador_de_Certificações_Informáticas
                 Application.Exit();
         }
 
+        //Botões de resposta
         private void BTNResposta1_Click(object sender, EventArgs e)
         {
             ClearAllButtons(panel2);
@@ -253,6 +254,7 @@ namespace Simulador_de_Certificações_Informáticas
             respostasDadas[contador - 1] = "d";
         }
 
+        //Botão para iniciar o exame - Verifica qual o exame escolhido
         private void BTNIniciar_Click(object sender, EventArgs e)
         {
             switch (comboBox1.SelectedIndex)
@@ -322,7 +324,7 @@ namespace Simulador_de_Certificações_Informáticas
             responder();
         }
 
-        private void BTNFinish_Click(object sender, EventArgs e) //Botão para finalizar exame
+        private void BTNFinish_Click(object sender, EventArgs e) //Botão para finalizar e entregar exame
         {
             for (int i = 0; i < 10; i++)
             {
@@ -346,7 +348,7 @@ namespace Simulador_de_Certificações_Informáticas
                 }
 
                 SQL.connection.Close();
-            }//final do for loop
+            }
 
             grafCorretas.Size = new Size((30 * corretas), 25);
             grafIncorretas.Size = new Size((30 * incorretas), 25);
@@ -430,6 +432,7 @@ namespace Simulador_de_Certificações_Informáticas
                 
         }
 
+        //Botão para inserir user
         private void btnInserirUser_Click(object sender, EventArgs e)
         {
             if (tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != -1)
@@ -448,6 +451,7 @@ namespace Simulador_de_Certificações_Informáticas
                 MessageBox.Show("Todos os campos devem estar preenchidos corretamente!");
         }
 
+        //Botão para dar update da DB
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             if (tbID.Text != String.Empty && tbUser.Text != String.Empty && tbPassword.Text != String.Empty && cbLevel.SelectedIndex != -1)
@@ -469,6 +473,7 @@ namespace Simulador_de_Certificações_Informáticas
                 MessageBox.Show("Todos os campos devem estar preenchidos corretamente!");
         }
 
+        //Botão para dar Delete a um User
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
             if (tbID.Text == String.Empty || tbID.Text != "ID")

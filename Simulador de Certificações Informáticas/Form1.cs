@@ -67,6 +67,7 @@ namespace Simulador_de_Certificações_Informáticas
             else { }
         }
 
+        //Botão de login, verifica as textbox e dá read na database
         private void BTNLogin_Click(object sender, EventArgs e)
         {
             SQL.connection.Open();

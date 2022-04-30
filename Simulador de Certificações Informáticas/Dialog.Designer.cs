@@ -59,9 +59,14 @@
             this.BTNResposta1 = new System.Windows.Forms.Button();
             this.BTNResposta2 = new System.Windows.Forms.Button();
             this.resultsTAB = new System.Windows.Forms.TabPage();
+            this.labelPercentagem = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.examesGrid = new System.Windows.Forms.DataGridView();
+            this.labelCorretas = new System.Windows.Forms.Label();
+            this.labelIncorretas = new System.Windows.Forms.Label();
+            this.grafCorretas = new System.Windows.Forms.Panel();
+            this.grafIncorretas = new System.Windows.Forms.Panel();
             this.adminTAB = new System.Windows.Forms.TabPage();
-            this.lockedPanel = new System.Windows.Forms.Panel();
-            this.lockedIcon = new System.Windows.Forms.PictureBox();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelID = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
@@ -75,25 +80,20 @@
             this.btnDeleteUser = new System.Windows.Forms.Button();
             this.dataGridViewUsers = new System.Windows.Forms.DataGridView();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.grafIncorretas = new System.Windows.Forms.Panel();
-            this.grafCorretas = new System.Windows.Forms.Panel();
-            this.labelIncorretas = new System.Windows.Forms.Label();
-            this.labelCorretas = new System.Windows.Forms.Label();
-            this.examesGrid = new System.Windows.Forms.DataGridView();
-            this.labelStatus = new System.Windows.Forms.Label();
-            this.labelPercentagem = new System.Windows.Forms.Label();
+            this.lockedIcon = new System.Windows.Forms.PictureBox();
+            this.lockedPanel = new System.Windows.Forms.Panel();
             this.TabController.SuspendLayout();
             this.simuladorTAB.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.resultsTAB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.examesGrid)).BeginInit();
             this.adminTAB.SuspendLayout();
-            this.lockedPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lockedIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examesGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lockedIcon)).BeginInit();
+            this.lockedPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -477,6 +477,83 @@
             this.resultsTAB.TabIndex = 1;
             this.resultsTAB.Text = "Resultados";
             // 
+            // labelPercentagem
+            // 
+            this.labelPercentagem.AutoSize = true;
+            this.labelPercentagem.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPercentagem.ForeColor = System.Drawing.Color.White;
+            this.labelPercentagem.Location = new System.Drawing.Point(778, 92);
+            this.labelPercentagem.Name = "labelPercentagem";
+            this.labelPercentagem.Size = new System.Drawing.Size(256, 40);
+            this.labelPercentagem.TabIndex = 11;
+            this.labelPercentagem.Text = "Percentagem: 0%";
+            this.labelPercentagem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelStatus
+            // 
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.ForeColor = System.Drawing.Color.White;
+            this.labelStatus.Location = new System.Drawing.Point(829, 47);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(101, 40);
+            this.labelStatus.TabIndex = 10;
+            this.labelStatus.Text = "Status";
+            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // examesGrid
+            // 
+            this.examesGrid.AllowUserToAddRows = false;
+            this.examesGrid.AllowUserToDeleteRows = false;
+            this.examesGrid.AllowUserToResizeColumns = false;
+            this.examesGrid.AllowUserToResizeRows = false;
+            this.examesGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.examesGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.examesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.examesGrid.Location = new System.Drawing.Point(43, 193);
+            this.examesGrid.Name = "examesGrid";
+            this.examesGrid.ReadOnly = true;
+            this.examesGrid.Size = new System.Drawing.Size(1008, 230);
+            this.examesGrid.TabIndex = 8;
+            // 
+            // labelCorretas
+            // 
+            this.labelCorretas.AutoSize = true;
+            this.labelCorretas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCorretas.ForeColor = System.Drawing.Color.White;
+            this.labelCorretas.Location = new System.Drawing.Point(41, 104);
+            this.labelCorretas.Name = "labelCorretas";
+            this.labelCorretas.Size = new System.Drawing.Size(105, 25);
+            this.labelCorretas.TabIndex = 7;
+            this.labelCorretas.Text = "Corretas - ";
+            // 
+            // labelIncorretas
+            // 
+            this.labelIncorretas.AutoSize = true;
+            this.labelIncorretas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIncorretas.ForeColor = System.Drawing.Color.White;
+            this.labelIncorretas.Location = new System.Drawing.Point(41, 19);
+            this.labelIncorretas.Name = "labelIncorretas";
+            this.labelIncorretas.Size = new System.Drawing.Size(115, 25);
+            this.labelIncorretas.TabIndex = 6;
+            this.labelIncorretas.Text = "Incorretas -";
+            // 
+            // grafCorretas
+            // 
+            this.grafCorretas.BackColor = System.Drawing.Color.DodgerBlue;
+            this.grafCorretas.Location = new System.Drawing.Point(43, 132);
+            this.grafCorretas.Name = "grafCorretas";
+            this.grafCorretas.Size = new System.Drawing.Size(50, 45);
+            this.grafCorretas.TabIndex = 1;
+            // 
+            // grafIncorretas
+            // 
+            this.grafIncorretas.BackColor = System.Drawing.Color.Red;
+            this.grafIncorretas.Location = new System.Drawing.Point(43, 47);
+            this.grafIncorretas.Name = "grafIncorretas";
+            this.grafIncorretas.Size = new System.Drawing.Size(50, 45);
+            this.grafIncorretas.TabIndex = 0;
+            // 
             // adminTAB
             // 
             this.adminTAB.BackColor = System.Drawing.Color.DimGray;
@@ -499,25 +576,6 @@
             this.adminTAB.Size = new System.Drawing.Size(1092, 446);
             this.adminTAB.TabIndex = 2;
             this.adminTAB.Text = "Gestão Users";
-            // 
-            // lockedPanel
-            // 
-            this.lockedPanel.BackColor = System.Drawing.Color.DimGray;
-            this.lockedPanel.Controls.Add(this.lockedIcon);
-            this.lockedPanel.Location = new System.Drawing.Point(0, 0);
-            this.lockedPanel.Name = "lockedPanel";
-            this.lockedPanel.Size = new System.Drawing.Size(1092, 446);
-            this.lockedPanel.TabIndex = 0;
-            // 
-            // lockedIcon
-            // 
-            this.lockedIcon.Image = ((System.Drawing.Image)(resources.GetObject("lockedIcon.Image")));
-            this.lockedIcon.Location = new System.Drawing.Point(444, 107);
-            this.lockedIcon.Name = "lockedIcon";
-            this.lockedIcon.Size = new System.Drawing.Size(207, 206);
-            this.lockedIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.lockedIcon.TabIndex = 0;
-            this.lockedIcon.TabStop = false;
             // 
             // labelPassword
             // 
@@ -689,81 +747,24 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // grafIncorretas
+            // lockedIcon
             // 
-            this.grafIncorretas.BackColor = System.Drawing.Color.Red;
-            this.grafIncorretas.Location = new System.Drawing.Point(43, 47);
-            this.grafIncorretas.Name = "grafIncorretas";
-            this.grafIncorretas.Size = new System.Drawing.Size(50, 45);
-            this.grafIncorretas.TabIndex = 0;
+            this.lockedIcon.Image = ((System.Drawing.Image)(resources.GetObject("lockedIcon.Image")));
+            this.lockedIcon.Location = new System.Drawing.Point(444, 107);
+            this.lockedIcon.Name = "lockedIcon";
+            this.lockedIcon.Size = new System.Drawing.Size(207, 206);
+            this.lockedIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.lockedIcon.TabIndex = 0;
+            this.lockedIcon.TabStop = false;
             // 
-            // grafCorretas
+            // lockedPanel
             // 
-            this.grafCorretas.BackColor = System.Drawing.Color.DodgerBlue;
-            this.grafCorretas.Location = new System.Drawing.Point(43, 132);
-            this.grafCorretas.Name = "grafCorretas";
-            this.grafCorretas.Size = new System.Drawing.Size(50, 45);
-            this.grafCorretas.TabIndex = 1;
-            // 
-            // labelIncorretas
-            // 
-            this.labelIncorretas.AutoSize = true;
-            this.labelIncorretas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIncorretas.ForeColor = System.Drawing.Color.White;
-            this.labelIncorretas.Location = new System.Drawing.Point(41, 19);
-            this.labelIncorretas.Name = "labelIncorretas";
-            this.labelIncorretas.Size = new System.Drawing.Size(115, 25);
-            this.labelIncorretas.TabIndex = 6;
-            this.labelIncorretas.Text = "Incorretas -";
-            // 
-            // labelCorretas
-            // 
-            this.labelCorretas.AutoSize = true;
-            this.labelCorretas.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCorretas.ForeColor = System.Drawing.Color.White;
-            this.labelCorretas.Location = new System.Drawing.Point(41, 104);
-            this.labelCorretas.Name = "labelCorretas";
-            this.labelCorretas.Size = new System.Drawing.Size(105, 25);
-            this.labelCorretas.TabIndex = 7;
-            this.labelCorretas.Text = "Corretas - ";
-            // 
-            // examesGrid
-            // 
-            this.examesGrid.AllowUserToAddRows = false;
-            this.examesGrid.AllowUserToDeleteRows = false;
-            this.examesGrid.AllowUserToResizeColumns = false;
-            this.examesGrid.AllowUserToResizeRows = false;
-            this.examesGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.examesGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.examesGrid.Location = new System.Drawing.Point(43, 193);
-            this.examesGrid.Name = "examesGrid";
-            this.examesGrid.ReadOnly = true;
-            this.examesGrid.Size = new System.Drawing.Size(1008, 230);
-            this.examesGrid.TabIndex = 8;
-            // 
-            // labelStatus
-            // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.ForeColor = System.Drawing.Color.White;
-            this.labelStatus.Location = new System.Drawing.Point(829, 47);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new System.Drawing.Size(101, 40);
-            this.labelStatus.TabIndex = 10;
-            this.labelStatus.Text = "Status";
-            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // labelPercentagem
-            // 
-            this.labelPercentagem.AutoSize = true;
-            this.labelPercentagem.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPercentagem.ForeColor = System.Drawing.Color.White;
-            this.labelPercentagem.Location = new System.Drawing.Point(778, 92);
-            this.labelPercentagem.Name = "labelPercentagem";
-            this.labelPercentagem.Size = new System.Drawing.Size(256, 40);
-            this.labelPercentagem.TabIndex = 11;
-            this.labelPercentagem.Text = "Percentagem: 0%";
-            this.labelPercentagem.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lockedPanel.BackColor = System.Drawing.Color.DimGray;
+            this.lockedPanel.Controls.Add(this.lockedIcon);
+            this.lockedPanel.Location = new System.Drawing.Point(0, 0);
+            this.lockedPanel.Name = "lockedPanel";
+            this.lockedPanel.Size = new System.Drawing.Size(1092, 446);
+            this.lockedPanel.TabIndex = 0;
             // 
             // HomePage
             // 
@@ -789,13 +790,13 @@
             this.panel2.ResumeLayout(false);
             this.resultsTAB.ResumeLayout(false);
             this.resultsTAB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.examesGrid)).EndInit();
             this.adminTAB.ResumeLayout(false);
             this.adminTAB.PerformLayout();
-            this.lockedPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lockedIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.examesGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lockedIcon)).EndInit();
+            this.lockedPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -830,8 +831,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button BTNFinish;
-        private System.Windows.Forms.Panel lockedPanel;
-        private System.Windows.Forms.PictureBox lockedIcon;
         private System.Windows.Forms.Button BTNResposta1;
         private System.Windows.Forms.Button BTNResposta4;
         private System.Windows.Forms.Button BTNResposta3;
@@ -856,5 +855,7 @@
         private System.Windows.Forms.DataGridView examesGrid;
         private System.Windows.Forms.Label labelPercentagem;
         private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Panel lockedPanel;
+        private System.Windows.Forms.PictureBox lockedIcon;
     }
 }
